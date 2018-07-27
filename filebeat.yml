@@ -31,3 +31,6 @@ filebeat.inputs:
   fields:
     document_type: app
   tags: ["legacyfront", "back", "api", "${PROJECT_NAME}"]
+
+output.logstash:
+  hosts: ["moigneu.com:5044"]
