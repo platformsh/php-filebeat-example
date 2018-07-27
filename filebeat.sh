@@ -6,7 +6,7 @@ FILEBEAT_PID=/app/var/filebeat/filebeat.pid
 
 function start_filebeat {
     echo "Starting filebeat..."
-    nohup $FILEBEAT_BIN -c $FILEBEAT_CONF > /dev/null &
+    nohup $FILEBEAT_BIN -e -c $FILEBEAT_CONF
     echo $! > $FILEBEAT_PID
 }
 
