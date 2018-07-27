@@ -40,6 +40,8 @@ hooks:
         tar xfz filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz
         cp filebeat-${FILEBEAT_VERSION}-linux-x86_64/filebeat bin/filebeat
         rm -rf filebeat-${FILEBEAT_VERSION}-linux-x86_64 filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz
+    deploy: |
+        mkdir -p /var/filebeat/logs
 
 # The configuration of the application when it is exposed to the web.
 web:
