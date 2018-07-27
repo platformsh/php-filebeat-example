@@ -14,6 +14,14 @@ build:
 # The size of the persistent disk of the application (in MB).
 disk: 1024
 
+dependencies:
+  python: # Specify one Pip package per line.
+    supervisor: '*'
+
+web:
+  commands:
+    start: "supervisord -n -c supervisord.conf"
+
 # The 'mounts' describe writable, persistent filesystem mounts in the application.
 # The keys are directory paths relative to the application root. The values are a
 # mount definition. In this case, `web-files` is just a unique name for the mount.
@@ -33,8 +41,6 @@ hooks:
         tar xfz filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz
         cp filebeat-${FILEBEAT_VERSION}-linux-x86_64/filebeat bin/filebeat
         rm -rf filebeat-${FILEBEAT_VERSION}-linux-x86_64 filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz
-    deploy: |
-        set -eu
 
 # The configuration of the application when it is exposed to the web.
 web:
