@@ -1,0 +1,33 @@
+path.home: /app/var/filebeat
+
+logging.level: warning
+logging.to_files: true
+logging.to_syslog: false
+logging.files:
+  name: filebeat.log
+
+filebeat.config:
+  modules:
+    enabled: false
+
+filebeat.inputs:
+- type: log
+  paths:
+    - /var/log/access.log
+  fields:
+    document_type: apache_access
+  tags: ["legacyfront", "back", "api", "${PROJECT_NAME}"]
+
+- type: log
+  paths:
+    - /var/log/error.log
+  fields:
+    document_type: apache_error
+  tags: ["legacyfront", "back", "api", "${PROJECT_NAME}"]
+
+- type: log
+  paths:
+    - /app/var/logs/log.txt
+  fields:
+    document_type: app
+  tags: ["legacyfront", "back", "api", "${PROJECT_NAME}"]

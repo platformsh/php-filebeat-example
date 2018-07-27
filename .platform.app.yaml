@@ -1,0 +1,47 @@
+# .platform.app.yaml
+
+# The name of this application, which must be unique within a project.
+name: 'app'
+
+# The type key specifies the language and version for your application.
+type: 'php:7.2'
+
+# On PHP, there are multiple build flavors available. Pretty much everyone
+# except Drupal 7 users will want the composer flavor.
+build:
+  flavor: none
+
+# The size of the persistent disk of the application (in MB).
+disk: 1024
+
+# The 'mounts' describe writable, persistent filesystem mounts in the application.
+# The keys are directory paths relative to the application root. The values are a
+# mount definition. In this case, `web-files` is just a unique name for the mount.
+mounts:
+    'var/logs':
+        source: local
+        source_path: 'logs'
+    'var/filebeat':
+        source: local
+        source_path: 'filebeat'
+
+hooks:
+    build: |
+        set -eu
+        FILEBEAT_VERSION=6.3.1
+        wget -q https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz
+        tar xfz filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz
+        cp filebeat-${FILEBEAT_VERSION}-linux-x86_64/filebeat bin/filebeat
+        rm -rf filebeat-${FILEBEAT_VERSION}-linux-x86_64 filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz
+    deploy: |
+        set -eu
+
+# The configuration of the application when it is exposed to the web.
+web:
+    locations:
+        '/':
+            # The public directory of the application relative to its root.
+            root: 'public'
+            # The front-controller script which determines where to send
+            # non-static requests.
+            passthru: '/index.php'
