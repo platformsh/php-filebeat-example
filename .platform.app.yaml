@@ -18,10 +18,6 @@ dependencies:
   python: # Specify one Pip package per line.
     supervisor: '*'
 
-web:
-  commands:
-    start: "supervisord -n -c supervisord.conf"
-
 # The 'mounts' describe writable, persistent filesystem mounts in the application.
 # The keys are directory paths relative to the application root. The values are a
 # mount definition. In this case, `web-files` is just a unique name for the mount.
@@ -44,6 +40,8 @@ hooks:
 
 # The configuration of the application when it is exposed to the web.
 web:
+    commands:
+        start: "supervisord -n -c supervisord.conf"
     locations:
         '/':
             # The public directory of the application relative to its root.
