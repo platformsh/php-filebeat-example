@@ -1,7 +1,7 @@
 #!/bin/bash
 
 FILEBEAT_BIN=/app/bin/filebeat
-FILEBEAT_CONF=/app/app/config/filebeat.yml
+FILEBEAT_CONF=/app/filebeat.yml
 FILEBEAT_PID=/app/var/filebeat/filebeat.pid
 
 function start_filebeat {
