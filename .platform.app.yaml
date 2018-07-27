@@ -41,12 +41,12 @@ hooks:
         cp filebeat-${FILEBEAT_VERSION}-linux-x86_64/filebeat bin/filebeat
         rm -rf filebeat-${FILEBEAT_VERSION}-linux-x86_64 filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz
     deploy: |
-        mkdir -p /var/filebeat/logs
+        mkdir -p /app/var/filebeat/logs
 
 # The configuration of the application when it is exposed to the web.
 web:
     commands:
-        start: "mkdir -p /var/filebeat/logs && supervisord -n -c supervisord.conf"
+        start: "supervisord -n -c supervisord.conf"
     locations:
         '/':
             # The public directory of the application relative to its root.
