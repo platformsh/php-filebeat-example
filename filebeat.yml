@@ -16,21 +16,21 @@ filebeat.inputs:
     - /var/log/access.log
   fields:
     document_type: apache_access
-  tags: ["legacyfront", "back", "api", "${PROJECT_NAME}"]
+  tags: ["legacyfront", "back", "api"]
 
 - type: log
   paths:
     - /var/log/error.log
   fields:
     document_type: apache_error
-  tags: ["legacyfront", "back", "api", "${PROJECT_NAME}"]
+  tags: ["legacyfront", "back", "api"]
 
 - type: log
   paths:
     - /app/var/logs/log.txt
   fields:
     document_type: app
-  tags: ["legacyfront", "back", "api", "${PROJECT_NAME}"]
+  tags: ["legacyfront", "back", "api"]
 
 output.logstash:
   hosts: ["moigneu.com:5044"]
