@@ -28,6 +28,9 @@ mounts:
     'var/filebeat':
         source: local
         source_path: 'filebeat'
+    'var/run':
+        source: local
+        source_path: 'run'
 
 hooks:
     build: |
