@@ -4,6 +4,6 @@ Testing filebeat ...
 
 $log = fopen('../var/logs/log.txt', 'a');
 fwrite($log, time() . PHP_EOL);
-fclose($fp);
+fclose($log);
 
 ?>
